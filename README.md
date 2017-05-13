@@ -35,3 +35,8 @@ if [ -d ~/.bashrc.d ]; then
 fi
 # }}}
 ```
+
+### See Also
+
+  - [aegypius/dotfiles](https://github.com/aegypius/dotfiles-docker): My personal dotfiles canonical repository
+  - [aegypius/dotfiles-docker](https://github.com/aegypius/dotfiles-docker): Docker helpers functions
