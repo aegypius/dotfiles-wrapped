@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+function dropbox() {
+  CONTAINER_IMAGE=${DROPBOX_IMAGE:-janeczku/dropbox}
+  CONTAINER_NAME=dropbox
+  CONTAINER_OPTIONS="-v $HOME/Dropbox:/dbox/Dropbox --restart=always"
+  CONTAINER_ID=$(docker inspect --format="{{.Id}}" $CONTAINER_NAME 2>/dev/null)
+
+  if [ -z $CONTAINER_ID ]; then
+    CONTAINER_ID=$(docker run $CONTAINER_OPTIONS -d --name=$CONTAINER_NAME $CONTAINER_IMAGE)
+  fi
+
+  if [ ! -z $CONTAINER_ID ]; then
+    docker exec -it $CONTAINER_ID $CONTAINER_NAME $@
+  else
+    echo "An error occurred in $CONTAINER_NAME" 1>&2
+  fi
+}

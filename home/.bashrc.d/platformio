@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+function platformio() {
+  CONTAINER_IMAGE=${PLATFORMIO_IMAGE:-aegypius/platformio}
+  docker run --rm --privileged -v /dev/bus/usb -v $(pwd):/src -it $CONTAINER_IMAGE platformio $@
+}
