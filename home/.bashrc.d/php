@@ -23,14 +23,3 @@ phpunit() {
   fi
   return $status
 }
-
-composer() {
-  COMPOSER_HOME=${COMPOSER_HOME:-$HOME/.composer} \
-  DOCKERFILES_RUN_FLAGS="--memory=2g --tty" \
-  docker_compose_wrapper php -d memory_limit=-1 /usr/local/bin/composer $@
-  local status=$?
-  if { [ "$status" = "1" ] || [ "$status" = "2" ]; }; then
-    command composer $@
-  fi
-  return $status
-}
