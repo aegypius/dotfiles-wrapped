@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+function bat() {
+  docker run -it --rm -e BAT_THEME -e BAT_STYLE -e BAT_TABS -v "$(pwd):/myapp" ${CONTAINER_IMAGE:-danlynn/bat:latest}
+}
